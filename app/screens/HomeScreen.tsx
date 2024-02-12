@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { Text } from "react-native";
+import { Text, StyleSheet, StatusBar, View } from "react-native";
 import { fetchFeed } from "../services/FetchService";
 import { RSSFeedSource } from "../models/RSSFeedSource";
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function HomeScreen() {
   useEffect(() => {
     const xatakaAndroid: RSSFeedSource = {
@@ -12,5 +13,23 @@ export default function HomeScreen() {
     };
     fetchFeed(xatakaAndroid);
   }, []);
-  return <Text>Halo!</Text>;
+
+  return (
+    <SafeAreaView style={[styles.safeAreaContainter]}>
+      <StatusBar barStyle="dark-content" />
+      <View style={[styles.listContainer]}></View>
+    </SafeAreaView>
+  );
 }
+
+const styles = StyleSheet.create({
+  safeAreaContainter: {
+    flex: 1,
+  },
+  listContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
+});
