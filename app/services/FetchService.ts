@@ -16,3 +16,16 @@ export function fetchFeed(rssFeed: RSSFeedSource) {
     resolve(articles);
   });
 }
+
+export function checkFeedSource(url) {
+  return new Promise(async (resolve, reject) => {
+    parse(url).then((rss) => {
+      if (rss == null) {
+        return reject()
+      }
+      resolve(true)
+    }).catch((err) => {
+      reject()
+    })
+  })
+}
