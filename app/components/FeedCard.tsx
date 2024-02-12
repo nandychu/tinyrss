@@ -13,8 +13,10 @@ export default function FeedCard(props) {
       <TouchableOpacity onPress={() => navigation.navigate("FeedReader", { article })}>
         <View style={[styles.cardContainer]}>
           <View style={{ display: "flex", flexShrink: 1, flexGrow: 1 }}>
-            <Text style={[styles.title]}>{article.title}</Text>
-            <Text style={[styles.briefContent]} numberOfLines={2}>
+            <Text testID="article-title" style={[styles.title]}>
+              {article.title}
+            </Text>
+            <Text testID="article-brief" style={[styles.briefContent]} numberOfLines={2}>
               {article.briefContent}
             </Text>
           </View>
@@ -24,8 +26,17 @@ export default function FeedCard(props) {
           </View>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 8, marginTop: 4 }}>
-          <Text style={[styles.author]}>{article.author}</Text>
-          <Text style={[styles.author]}>{article.published}</Text>
+          {article.author && (
+            <Text testID="article-author" style={[styles.author]}>
+              {article.author}
+            </Text>
+          )}
+
+          {article.published && (
+            <Text testID="article-published" style={[styles.author]}>
+              {article.published}
+            </Text>
+          )}
         </View>
       </TouchableOpacity>
     </Animated.View>

@@ -32,6 +32,7 @@ const SearchBar = ({ onChange }) => {
   return (
     <View style={styles.searchBar}>
       <TextInput
+        testID="search-input"
         placeholder="Buscar..."
         value={searchText}
         onChangeText={handleSearchTextChange}
