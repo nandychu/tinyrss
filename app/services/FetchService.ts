@@ -5,6 +5,8 @@ import { RawRSSResponse, processFeedResponse } from "./FeedProcessor";
 export function fetchFeed(rssFeed: RSSFeedSource) {
   return new Promise(async (resolve, reject) => {
     let rss: Partial<RawRSSResponse> = await parse(rssFeed.url);
+    console.log(rssFeed)
+
     rss = {
       ...rss,
       items: rss.items ? [...rss.items] : [],

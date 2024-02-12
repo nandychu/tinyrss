@@ -4,6 +4,7 @@ import { fetchFeed } from "../services/FetchService";
 import { RSSFeedSource } from "../models/RSSFeedSource";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import FeedList from "../components/FeedList";
 export default function HomeScreen() {
   const [initialLoad, setInitialLoad] = useState(false);
 
@@ -19,7 +20,7 @@ export default function HomeScreen() {
       if (!macStories) {
         const macStoriesFeed: RSSFeedSource = {
           name: "MacStories",
-          url: "mac",
+          url: "https://www.macstories.net/feed/",
           firstFetch: false,
           articles: [],
         };
@@ -43,7 +44,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={[styles.safeAreaContainter]}>
       <StatusBar barStyle="dark-content" />
-      <View style={[styles.listContainer]}>{initialLoad && <Text>Loaded</Text>}</View>
+      <View style={[styles.listContainer]}>{initialLoad && <FeedList></FeedList>}</View>
     </SafeAreaView>
   );
 }
