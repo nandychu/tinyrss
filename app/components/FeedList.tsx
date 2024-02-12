@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FlatList, View, ActivityIndicator, StyleSheet } from "react-native";
 import {} from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
@@ -8,6 +8,7 @@ import { observer } from "mobx-react-lite";
 import mainStore from "../store/mainStore";
 import { RSSFeedSource } from "../models/RSSFeedSource";
 import { fetchFeed } from "../services/FetchService";
+import SearchBar from "./SearchBar";
 
 function FeedList() {
   const [items, setItems] = useState<Article[]>([]);
@@ -62,9 +63,22 @@ function FeedList() {
     );
   }
 
+  const onChange = useCallback((e) => {
+    setFilterTitle(e);
+  }, []);
+
+  function ListHeaderComponent() {
+    return (
+      <View style={{ flex: 1 }}>
+        <SearchBar onChange={onChange}></SearchBar>
+      </View>
+    );
+  }
+
   return (
     <View style={[styles.listContainer]}>
       <FlatList
+        ListHeaderComponent={ListHeaderComponent}
         ItemSeparatorComponent={ListItemSeparator} // Aquí se agrega la línea divisoria
         renderItem={renderListItem}
         data={filteredItems}
