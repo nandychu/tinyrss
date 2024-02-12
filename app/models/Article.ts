@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio";
-import { RawRSSItem, RawRSSResponse } from "../services/FeedProcessor";
+import { RawRSSItem } from "./RSSRawItem";
 
 export default class Article {
   headerImage: string;

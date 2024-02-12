@@ -1,6 +1,7 @@
 import parse from "rss-to-json";
 import { RSSFeedSource } from "../models/RSSFeedSource";
-import { RawRSSResponse, processFeedResponse } from "./FeedProcessor";
+import { processFeedResponse } from "./FeedProcessor";
+import { RawRSSResponse } from "../models/RSSRawResponse";
 
 export function fetchFeed(rssFeed: RSSFeedSource) {
   return new Promise(async (resolve, reject) => {
