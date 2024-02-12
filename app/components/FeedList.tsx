@@ -9,6 +9,8 @@ import mainStore from "../store/mainStore";
 import { RSSFeedSource } from "../models/RSSFeedSource";
 import { fetchFeed } from "../services/FetchService";
 import SearchBar from "./SearchBar";
+import SourcesList from "./SourcesList";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function FeedList() {
   const [items, setItems] = useState<Article[]>([]);
@@ -67,9 +69,15 @@ function FeedList() {
     setFilterTitle(e);
   }, []);
 
+  const onSourceChange = useCallback(async (source) => {
+    const selectedSource = await AsyncStorage.getItem(source);
+    setSelectedSource(JSON.parse(selectedSource));
+  }, []);
+
   function ListHeaderComponent() {
     return (
       <View style={{ flex: 1 }}>
+        <SourcesList onSourceChange={onSourceChange}></SourcesList>
         <SearchBar onChange={onChange}></SearchBar>
       </View>
     );
