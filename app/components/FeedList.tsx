@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { FlatList, View, ActivityIndicator, StyleSheet } from "react-native";
+import { FlatList, View, ActivityIndicator, StyleSheet, Text } from "react-native";
 import {} from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import FeedCard from "./FeedCard";
@@ -17,6 +17,8 @@ function FeedList() {
   const [filteredItems, setFilteredItems] = useState<Article[]>([]);
   const [filterTitle, setFilterTitle] = useState(null);
   const [selectedSource, setSelectedSource] = useState<RSSFeedSource>(mainStore.getSelectedSource());
+  const [fetchingArticles, setFetchingArticles] = useState(false);
+  const [noArticlesFound, setNoArticlesFound] = useState(false);
 
   useEffect(() => {
     setItems([]);
@@ -25,9 +27,11 @@ function FeedList() {
   }, [selectedSource]);
 
   function fetch() {
+    setFetchingArticles(true);
     fetchFeed(selectedSource).then((res: any) => {
       setItems(res);
       setFilteredItems(res);
+      setFetchingArticles(false);
     });
   }
 
@@ -38,6 +42,11 @@ function FeedList() {
       // Filtramos por título y mantenemos el array items inmutable para evitar llamar de nuevo al fetch
       let filteredArticles = [...items].filter((article) => article.title.toLowerCase().includes(filterTitle));
       setFilteredItems(filteredArticles);
+      if (filteredArticles.length == 0) {
+        setNoArticlesFound(true);
+      } else {
+        setNoArticlesFound(false)
+      }
     }
   }, [filterTitle]);
 
@@ -60,7 +69,8 @@ function FeedList() {
   function ListEmptyComponent() {
     return (
       <Animated.View entering={FadeIn} exiting={FadeOut} style={[styles.loaderContainer]}>
-        <ActivityIndicator></ActivityIndicator>
+        {fetchingArticles && <ActivityIndicator></ActivityIndicator>}
+        {noArticlesFound && !fetchingArticles && <Text>No articles found</Text>}
       </Animated.View>
     );
   }
