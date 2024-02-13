@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { FlatList, View, ActivityIndicator, StyleSheet } from "react-native";
 import {} from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
@@ -74,14 +74,15 @@ function FeedList() {
     setSelectedSource(JSON.parse(selectedSource));
   }, []);
 
-  function ListHeaderComponent() {
-    return (
+  const ListHeaderComponent = useMemo(
+    () => (
       <View style={{ flex: 1 }}>
         <SourcesList onSourceChange={onSourceChange}></SourcesList>
         <SearchBar onChange={onChange}></SearchBar>
       </View>
-    );
-  }
+    ),
+    [onSourceChange, onChange]
+  );
 
   return (
     <View style={[styles.listContainer]}>
