@@ -32,7 +32,7 @@ En la clase modelo principal del proyecto `article` se ha decidido realizar en e
 Se ha realizado una diferenciación entre pantallas y componentes, pudiéndo estos últimos reutilizarse en diferentes pantallas de la app en caso de querer extender su funcionalidad.
 
 
-# Funcionalidad adicional
+# Adicional
 
 Se ha añadido la librería `rxjs` en el componente SearchBar para poder hacer uso de un debounceTime y evitar realizar el proceso de comprobación de los títulos de la lista de forma innecesaria.
 
@@ -44,13 +44,15 @@ Se ha añadido, para propósitos de la demo, una pequeña store con `mobXLite` q
 
 Con la librería `Reanimated` hemos podido añadir una barra superior en la visualización del artículo que nos indica la cantidad del total de artículo que hemos leído en función de la posición del scroll. Además, en la carga de los elementos del FlatList se ha añadido un fadeIn lateral así como en la carga del artículo diferentes animaciones que mejoran la experiencia de uso de la app.
 
+Se han incluido tests de los componentes realizados con `jest` y `react-testing-library`.
+
 # Escalado y mantenibilidad
 Se ha optado por el uso de la librería `react-native-render-html` por su sólida comunidad y soporte continuo. La forma en la que nos beneficiamos de su uso es por la posibilidad de poder añadir renderers para componentes adicionales como por ejemplo iframe o audio así de su capacidad de manipular los elementos de los artículos, pudiéndose en un futuro extender la funcionalidad y estilo en la visualización de artículos.
 
+
+A la hora de elegir una librería para hacer el fetch de las noticias se ha optado por `rss-to-json`, ya que nos permite, al haber añadido la funcionalidad extra de añadir fuentes en el feed, mantener una fuente de datos lo más similar posible entre los distintos proveedores.
 
 https://github.com/nandychu/tinyrss/assets/3582298/bc22a917-efc1-4f0a-8ba9-698e953dec41
 
 
 https://github.com/nandychu/tinyrss/assets/3582298/07a618e7-efd0-4a86-a8fd-2480cfd10051
-
-A la hora de elegir una librería para hacer el fetch de las noticias se ha optado por `rss-to-json`, ya que nos permite, al haber añadido la funcionalidad extra de añadir fuentes en el feed, mantener una fuente de datos lo más similar posible entre los distintos proveedores.
