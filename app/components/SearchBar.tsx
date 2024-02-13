@@ -3,6 +3,7 @@ import { TextInput, View, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
+import Animated, { FadeIn, FadeOut, FadeOutLeft } from "react-native-reanimated";
 
 const searchSubject = new Subject();
 
@@ -36,7 +37,23 @@ const SearchBar = ({ onChange }) => {
         onChangeText={handleSearchTextChange}
         style={styles.input}
       />
-      <Ionicons name="search" size={20} color="#777" style={{ marginRight: 10 }} />
+      {searchText === "" && (
+        <Animated.View exiting={FadeOut} entering={FadeIn}>
+          <Ionicons name="search" size={20} color="#777" style={{ marginRight: 10 }} />
+        </Animated.View>
+      )}
+
+      {searchText !== "" && (
+        <Animated.View exiting={FadeOut} entering={FadeIn}>
+          <Ionicons
+            onPress={() => handleSearchTextChange("")}
+            name="close-circle"
+            size={20}
+            color="#777"
+            style={{ marginRight: 10 }}
+          />
+        </Animated.View>
+      )}
     </View>
   );
 };
