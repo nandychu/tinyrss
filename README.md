@@ -3,6 +3,14 @@
 
 
 
+
+https://github.com/nandychu/tinyrss/assets/3582298/bc22a917-efc1-4f0a-8ba9-698e953dec41
+
+
+https://github.com/nandychu/tinyrss/assets/3582298/07a618e7-efd0-4a86-a8fd-2480cfd10051
+
+
+
 ## 📝 Índice
 
 - [Proyecto](#Proyecto)
