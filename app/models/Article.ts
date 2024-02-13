@@ -19,6 +19,7 @@ export default class Article {
     this.published = this.dateFormatter(raw.published)
   }
 
+  // Extraemos la primera imagen que encontremos en el contenido del artículo
   private parseHeaderImage(raw: RawRSSItem) {
     const regex = /<img.*?src="(.*?)".*?>/;
     const matchDescription = raw.description.match(regex);
@@ -37,6 +38,7 @@ export default class Article {
     return foundUrl
   }
 
+  // Eliminamos la primera imagen del artículo ya que la mostraremos fuera de la librería de renderizado html
   private parseContent(raw: RawRSSItem) {
     const regex = /<img.*?src="(.*?)".*?>/;
     if (raw.content) {
@@ -46,6 +48,7 @@ export default class Article {
     }
   }
 
+  // Extraemos una descripción del primer elemento con contenido (a veces los proveedores retornan elementos vacíos o sin texto)
   private parseBriefContent(raw) {
     let briefContent;
 

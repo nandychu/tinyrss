@@ -14,6 +14,7 @@ export default function HomeScreen() {
 
   const getData = async () => {
     try {
+      // Cargamos las dos fuentes por defecto para esta demo
       const macStories = await AsyncStorage.getItem("macstories");
       const xatakaAndroid = await AsyncStorage.getItem("xatakandroid");
 

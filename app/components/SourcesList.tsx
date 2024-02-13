@@ -26,6 +26,7 @@ function SourcesList({ onSourceChange }) {
     await AsyncStorage.removeItem(toDeleteSource);
     let sources = await AsyncStorage.getAllKeys();
     mainStore.loadSources();
+    // Eliminamos el source y forzamos a elegir el primero para actualizar la vista a un source que exista
     onSourceChange(sources[0]);
   }
 

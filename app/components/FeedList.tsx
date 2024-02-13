@@ -26,7 +26,6 @@ function FeedList() {
 
   function fetch() {
     fetchFeed(selectedSource).then((res: any) => {
-      // console.log("articles!!!", res);
       setItems(res);
       setFilteredItems(res);
     });
@@ -36,6 +35,7 @@ function FeedList() {
     if (filterTitle === "") {
       setFilteredItems([...items]);
     } else {
+      // Filtramos por título y mantenemos el array items inmutable para evitar llamar de nuevo al fetch
       let filteredArticles = [...items].filter((article) => article.title.toLowerCase().includes(filterTitle));
       setFilteredItems(filteredArticles);
     }

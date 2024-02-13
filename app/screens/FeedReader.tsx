@@ -22,11 +22,11 @@ export function FeedReader({ route }) {
 
   const progressBarAnimatedStyle = useAnimatedStyle(() => {
     const measuredText = measure(textRef);
-    if (measuredText === null || measuredText.height === 0 || Number.isNaN(measuredText.height)) {
+    if (measuredText === null || measuredText.height === 0 || Number.isNaN(measuredText.height)) { // Si el texto no es visible no tendra tamaño, retornamos el width a 0
       return { width: 0 };
     }
 
-    const measuredScroll = measure(scrollViewRef);
+    const measuredScroll = measure(scrollViewRef); // Lo mismo para el scroll, puede tardar un poco en haber medidas debido a la animación del ScrollView
     if (
       measuredScroll === null ||
       measuredScroll.width === 0 ||
@@ -41,7 +41,7 @@ export function FeedReader({ route }) {
     const maxOffset = measuredText.height - measuredScroll.height;
 
     const progress = currentOffset / maxOffset;
-    const clampedProgress = clamp(progress, 0, 1);
+    const clampedProgress = clamp(progress, 0, 1); // Limitamos con clamp, la animación con reanimated siempre debe estar en medidas comprendidas entre el 0 y el 1
 
     const maxWidth = measuredScroll.width;
     const width = clampedProgress * maxWidth;
