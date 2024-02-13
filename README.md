@@ -1,16 +1,6 @@
 # TinyRSS
 
 
-
-
-
-https://github.com/nandychu/tinyrss/assets/3582298/bc22a917-efc1-4f0a-8ba9-698e953dec41
-
-
-https://github.com/nandychu/tinyrss/assets/3582298/07a618e7-efd0-4a86-a8fd-2480cfd10051
-
-
-
 ## 📝 Índice
 
 - [Proyecto](#Proyecto)
@@ -57,5 +47,10 @@ Con la librería `Reanimated` hemos podido añadir una barra superior en la visu
 # Escalado y mantenibilidad
 Se ha optado por el uso de la librería `react-native-render-html` por su sólida comunidad y soporte continuo. La forma en la que nos beneficiamos de su uso es por la posibilidad de poder añadir renderers para componentes adicionales como por ejemplo iframe o audio así de su capacidad de manipular los elementos de los artículos, pudiéndose en un futuro extender la funcionalidad y estilo en la visualización de artículos.
 
+
+https://github.com/nandychu/tinyrss/assets/3582298/bc22a917-efc1-4f0a-8ba9-698e953dec41
+
+
+https://github.com/nandychu/tinyrss/assets/3582298/07a618e7-efd0-4a86-a8fd-2480cfd10051
 
 A la hora de elegir una librería para hacer el fetch de las noticias se ha optado por `rss-to-json`, ya que nos permite, al haber añadido la funcionalidad extra de añadir fuentes en el feed, mantener una fuente de datos lo más similar posible entre los distintos proveedores.
